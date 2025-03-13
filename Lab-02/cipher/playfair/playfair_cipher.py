@@ -10,7 +10,8 @@ class PlayFairCipher:
         key = key.upper()
         key_set = set(key)
         alphabet = "ABCDEFGHIKLMNOPQRSTUVWXYZ"
-        remaining_letters = [letter for letter in alphabet if letter not in key_set]
+        remaining_letters = [
+            letter for letter in alphabet if letter not in key_set]
         matrix = list(key)
 
         for letter in remaining_letters:
@@ -42,11 +43,12 @@ class PlayFairCipher:
             encrypted_text += matrix[(row1 + 1) % 5][col1] + matrix[(row2 + 1) % 5][col2]
         else:
             encrypted_text += matrix[row1][col2] + matrix[row2][col1]
+        return encrypted_text
 
     def playfair_decrypt(self, cipher_text, matrix):
         cipher_text = cipher_text.upper()
         decrypted_text = ""
-        decrypted_text1 = ""  # Có vẻ như dòng này không cần thiết
+        decrypted_text1 = ""  
 
         for i in range(0, len(cipher_text), 2):
             pair = cipher_text[i:i+2]
@@ -58,7 +60,7 @@ class PlayFairCipher:
         elif col1 == col2:
             decrypted_text += matrix[(row1 - 1) % 5][col1] + matrix[(row2 - 1) % 5][col2]
         else:
-            decrypted_text = matrix[row1][col2] + matrix[row2][col1]
+            decrypted_text += matrix[row1][col2] + matrix[row2][col1]
 
         banro = ""
         
